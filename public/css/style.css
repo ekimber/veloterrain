@@ -1,0 +1,15 @@
+html {
+
+}
+
+body {
+    padding-top: 60px;
+/* padding-top: 60px; /\* 60px to make the container go all the way to the bottom of the topbar *\/ */
+}
+
+a.connect_strava {
+  display: block;
+  background-image: url("/static/img/ConnectWithStrava.png");
+  height: 31px;
+  width: 172px;
+}
