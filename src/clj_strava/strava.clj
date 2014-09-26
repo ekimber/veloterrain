@@ -36,7 +36,16 @@
    {:access-token ((access-token code) "access_token")})
 
 (defn activities [token]
-  (<!! (client/json-get (str endpoint "/v3/athlete/activities") (auth-header token))))
+  (<!! (client/json-get 
+         (str endpoint "/v3/athlete/activities") 
+         (auth-header token))))
 
-(defn activity [activity-id token]
-  (<!! (client/json-get (str endpoint "/v3/activities/" activity-id) (auth-header token))))
+(defn activity [token athlete-id ]
+  (<!! (client/json-get 
+         (str endpoint "/v3/activities/" activity-id) 
+         (auth-header token))))
+
+(defn athlete [token activity-id ]
+  (<!! (client/json-get 
+         (str endpoint "/v3/athletes/" athlete-id) 
+         (auth-header token))))
