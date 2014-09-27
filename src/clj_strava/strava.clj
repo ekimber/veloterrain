@@ -1,5 +1,6 @@
 (ns clj-strava.strava
-  (:require [org.httpkit.client :as http]
+  (:require [clojure.string :as str]
+            [org.httpkit.client :as http]
             [clojure.tools.logging :as log]
             [clojure.data.json :as json]
             [clj-strava.polyline :as poly]
@@ -14,13 +15,7 @@
 (defn url-encode [s] (URLEncoder/encode (str s) "utf8"))
 (defn auth-header [token] {:headers {"Authorization" (str "Bearer " token)}})
 
-
-(defn get-body [uri opts]
-  (let [response @(http/get uri opts)]
-    (log/info "Got: " (:body response))
-    (:body response)))
-
-;;TODO pass in secret
+;;TODO pass in secret as local config.  It really shouldn't be visible in github.
 (defn swap-tokens [code]
   (:body
    @(http/post (str strava-url "/oauth/token")
@@ -35,17 +30,42 @@
 (defn exchange-tokens [code]
    {:access-token ((access-token code) "access_token")})
 
-(defn activities [token]
-  (<!! (client/json-get 
-         (str endpoint "/v3/athlete/activities") 
+(defn replace-keywords [url keymap]
+  (if (empty? keymap)
+    url
+    (let [k (first (keys keymap))]
+      (replace-keywords
+       (str/replace url (re-pattern (str k)) (str (get keymap k)))
+       (dissoc keymap k)))))
+
+(defn url-builder
+  ([url]
+   (str endpoint url))
+  ([url params]
+   ()))
+
+
+;TODO could simplify this macro
+(defmacro defapifn
+  ([name url]
+  `(defn ~name [token#]
+       (<!! (client/json-get
+             (url-builder ~url)
+             (auth-header token#)))))
+  ([name url & param-names] ;TODO could validate param-names
+    `(defn ~name [token# params#]
+       (<!! (client/json-get
+             (url-builder ~url params#)
+             (auth-header token#))))))
+
+(defapifn activities "/v3/athlete/activities")
+
+(defn activity [token activity-id]
+  (<!! (client/json-get
+         (str endpoint "/v3/activities/" activity-id)
          (auth-header token))))
 
-(defn activity [token athlete-id ]
-  (<!! (client/json-get 
-         (str endpoint "/v3/activities/" activity-id) 
-         (auth-header token))))
-
-(defn athlete [token activity-id ]
-  (<!! (client/json-get 
-         (str endpoint "/v3/athletes/" athlete-id) 
+(defn athlete [token athlete-id ]
+  (<!! (client/json-get
+         (str endpoint "/v3/athletes/" athlete-id)
          (auth-header token))))
