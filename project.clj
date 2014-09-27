@@ -7,7 +7,7 @@
 ;;  :aot [clj-strava.main]
   :uberjar-name "clj-strava-standalone.jar"
   ;; :plugins [[lein-swank "1.4.4"]]
-  :dependencies [[org.clojure/clojure "1.7.0-alpha1"]
+  :dependencies [[org.clojure/clojure "1.7.0-alpha2"]
                  [org.clojure/tools.cli "0.2.2"]
                  [compojure "1.1.5"]
                  [ring/ring-core "1.1.8"]
@@ -23,6 +23,6 @@
                  [ch.qos.logback/logback-classic "1.0.1"]
                  ;; template
                  [me.shenfeng/mustache "1.1"]
-                 [org.clojure/core.async "0.1.338.0-5c5012-alpha"]
+                 [org.clojure/core.async "0.1.346.0-17112a-alpha"]
                  [org.clojure/math.numeric-tower "0.0.4"]]
   :profiles {:dev {:dependencies [[midje "1.5.1"]]}})

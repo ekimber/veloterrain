@@ -30,7 +30,7 @@
                     :access-token (get-access-token req)}))
 
 (defn show-activity [id req]
-  (let [activity (strava/activity id (get-access-token req))]
+  (let [activity (strava/activity (get-access-token req) {:id id})]
     (tmpl/activity (merge
                     activity
                     {:polyline (-> activity :map :polyline poly/decode vec)}))))
