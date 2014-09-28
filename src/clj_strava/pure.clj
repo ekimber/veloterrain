@@ -10,6 +10,9 @@
 (defn round-vec [v]
   (map #(Math/round %) v))
 
+(defn commify-vec [v]
+  (str  "[" (apply str(interpose "," v)) "]"))
+
 (defn rads
   ([v]
    (if (seq? v)
@@ -29,6 +32,13 @@
 
 (defn latitudes [points]
   (map :latitude points))
+
+
+(defn stringify-points [points]
+  (->> points
+       (map #(str "[" (:latitude %) ", " (:longitude %) "]"))
+       (interpose ", ")
+       (apply str)))
 
 (defn box [points]
   (let [lats (latitudes points)

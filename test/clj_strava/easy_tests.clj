@@ -9,6 +9,9 @@
              {:longitude -0.5 :latitude 0.5}
              {:longitude 1.2 :latitude 0.1}])
 
+(fact "Can translate points into string for leaflet"
+      (stringify-points points)    =>   "[1.0, 0.5], [0.5, -0.5], [0.1, 1.2]")
+
 (fact "Can calculate bounding box for some points"
       (box points)     =>     [[0.1 -0.5]
                                [0.1 1.2]
@@ -37,3 +40,5 @@
 (centre-box raw-points)
 (zoom-level (apply rads b-size))
 
+
+(->> points box-size (apply rads) zoom-level round-vec (map dec)  (apply max))

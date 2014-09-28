@@ -2,7 +2,8 @@
   (:require [clj-strava.tmpls :as tmpl]
             [clojure.tools.logging :as log]
             [clj-strava.strava :as strava]
-            [clj-strava.polyline :as poly]))
+            [clj-strava.polyline :as poly]
+            [clj-strava.pure :refer :all]))
 
 (defn access_token [req]
   ((:query-params req) "access_token"))
@@ -30,7 +31,15 @@
                     :access-token (get-access-token req)}))
 
 (defn show-activity [id req]
-  (let [activity (strava/activity (get-access-token req) {:id id})]
+  (let [activity (strava/activity (get-access-token req) {:id id})
+        points (-> activity :map :polyline poly/decode)]
     (tmpl/activity (merge
                     activity
-                    {:polyline (-> activity :map :polyline poly/decode vec)}))))
+                    {:polyline (-> points vec)
+                     :activity-path (str "["(stringify-points points) "]")
+                     :map-centre (-> points centre-box commify-vec)
+                     :zoom-level (->> points box-size (apply rads) zoom-level round-vec (map dec) (apply max))}))))
+
+(comment
+  "The overpass job will return an id and go off and do its work in the background.  Client can then use the id to retrieve
+  the result or a progress update if the query has not yet finished running.")

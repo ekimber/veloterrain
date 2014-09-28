@@ -12,3 +12,4 @@
                         :uri "/api/time"})]
     (is (= 200 (:status resp)))
     (is (-> resp :body read-json :time))))
+
