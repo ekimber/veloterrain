@@ -1,14 +1,15 @@
-(defproject clj-strava "0.1.0-SNAPSHOT"
+(defproject veloterrain "0.1.0-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :main clj-strava.main
-;;  :aot [clj-strava.main]
-  :uberjar-name "clj-strava-standalone.jar"
+  :main veloterrain.main
+;;  :aot [veloterrain.main]
+  :uberjar-name "veloterrain-standalone.jar"
   ;; :plugins [[lein-swank "1.4.4"]]
   :dependencies [[org.clojure/clojure "1.7.0-alpha2"]
                  [org.clojure/tools.cli "0.2.2"]
+                 [ekimber/clj-strava "0.1.0"]
                  [compojure "1.1.5"]
                  [ring/ring-core "1.1.8"]
                  [org.clojure/data.json "0.2.1"]

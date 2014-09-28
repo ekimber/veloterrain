@@ -1,6 +1,6 @@
 # Project Name
 
-clj-strava is ....
+veloterrain is ....
 
 
 ## Project Goals
@@ -23,7 +23,7 @@ To subscribe for announcements of releases, important changes and so on, please 
 
 ## Artifacts
 
-... artifacts are [released to Clojars](https://clojars.org/clj-strava). If you are using Maven, add the following repository
+... artifacts are [released to Clojars](https://clojars.org/veloterrain). If you are using Maven, add the following repository
 definition to your `pom.xml`:
 
 ``` xml
@@ -37,14 +37,14 @@ definition to your `pom.xml`:
 
 With Leiningen:
 
-    [clj-strava "1.0.0-alpha1"]
+    [veloterrain "1.0.0-alpha1"]
 
 
 With Maven:
 
     <dependency>
       <groupId>clojurewerkz</groupId>
-      <artifactId>clj-strava</artifactId>
+      <artifactId>veloterrain</artifactId>
       <version>1.0.0-alpha1</version>
     </dependency>
 
@@ -63,18 +63,18 @@ Our documentation site is not yet live, sorry.
 
 ## Supported Clojure versions
 
-clj-strava is built from the ground up for Clojure 1.5.1 and up.
+veloterrain is built from the ground up for Clojure 1.5.1 and up.
 
 
 ## Continuous Integration Status
 
-[![Continuous Integration status](https://secure.travis-ci.org/clojurewerkz/clj-strava.png)](http://travis-ci.org/clojurewerkz/clj-strava)
+[![Continuous Integration status](https://secure.travis-ci.org/clojurewerkz/veloterrain.png)](http://travis-ci.org/clojurewerkz/veloterrain)
 
 
 
 ## ... Is a ClojureWerkz Project
 
-clj-strava is part of the [group of Clojure libraries known as ClojureWerkz](http://clojurewerkz.org), together with
+veloterrain is part of the [group of Clojure libraries known as ClojureWerkz](http://clojurewerkz.org), together with
  * [Monger](http://clojuremongodb.info)
  * [Langohr](https://github.com/michaelklishin/langohr)
  * [Elastisch](https://github.com/clojurewerkz/elastisch)
@@ -85,7 +85,7 @@ clj-strava is part of the [group of Clojure libraries known as ClojureWerkz](htt
 
 ## Development
 
-clj-strava uses [Leiningen
+veloterrain uses [Leiningen
 2](https://github.com/technomancy/leiningen/blob/master/doc/TUTORIAL.md). Make
 sure you have it installed and then run tests against supported
 Clojure versions using
