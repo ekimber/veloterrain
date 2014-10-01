@@ -12,11 +12,8 @@
     {{>partials/navbar}}
 
     <div class="container">
-    <div id="map">
-    </div>
-      <!--<h3>{{name}}</h3>
-      <p>{{polyline}}</p>-->
-
+      <h3>{{name}}</h3>
+      <div id="map"></div>
     </div>
 
     <script>

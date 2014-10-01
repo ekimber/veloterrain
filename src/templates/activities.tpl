@@ -11,7 +11,7 @@
     <div class="container">
       <h3>Activities</h3>
       {{#activities}}
-        <a href="/activities/{{id}}?access-token={{access-token}}">{{name}}</a>
+        <p><a href="/activities/{{id}}?access-token={{access-token}}">{{name}}</a></p>
       {{/activities}}
 
     </div>

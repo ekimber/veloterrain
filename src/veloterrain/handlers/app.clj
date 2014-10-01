@@ -33,7 +33,7 @@
                     {:polyline (-> points vec)
                      :activity-path (str "["(stringify-points points) "]")
                      :map-centre (-> points centre-box commify-vec)
-                     :zoom-level (->> points box-size (apply rads) zoom-level round-vec (map dec) (apply max))}))))
+                     :zoom-level (->> points box-size (apply rads) zoom-level round-vec (apply max))}))))
 
 (comment
   "The overpass job will return an id and go off and do its work in the background.  Client can then use the id to retrieve

@@ -14,4 +14,4 @@ a.connect_strava {
   width: 172px;
 }
 
-#map { height: 400px; }
+#map { height: 512px; width: 512px; }
