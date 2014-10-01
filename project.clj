@@ -26,4 +26,5 @@
                  [me.shenfeng/mustache "1.1"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
                  [org.clojure/math.numeric-tower "0.0.4"]]
+  :dev-dependencies [[midje "1.5.1"]]
   :profiles {:dev {:dependencies [[midje "1.5.1"]]}})
