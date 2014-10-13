@@ -33,6 +33,11 @@
 (defn latitudes [points]
   (map :latitude points))
 
+(defn point-vec [point]
+  [(:latitude point) (:longitude point)])
+
+(defn points-vec [points]
+  (map point-vec points))
 
 (defn stringify-points [points]
   (->> points
@@ -42,15 +47,11 @@
 
 (defn box [points]
   (let [lats (latitudes points)
-        lons (longitudes points)
-        min-lats (apply min lats)
-        min-lons (apply min lons)
-        max-lats (apply max lats)
-        max-lons (apply max lons)]
-    [[min-lats min-lons]
-     [min-lats max-lons]
-     [max-lats min-lons]
-     [max-lats max-lons]]))
+        lons (longitudes points)]
+    [(apply min lats)
+     (apply min lons)
+     (apply max lats)
+     (apply max lons)]))
 
 (defn max-diff [n]
   (- (apply max n) (apply min n)))

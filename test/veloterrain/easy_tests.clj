@@ -1,6 +1,7 @@
 (ns veloterrain.easy-tests
   (:require [veloterrain.pure :refer :all]
             [veloterrain.polyline :as poly]
+            [veloterrain.overpass :as osm]
             [clojure.test :refer :all])
   (:use midje.sweet))
 
@@ -9,14 +10,14 @@
              {:longitude -0.5 :latitude 0.5}
              {:longitude 1.2 :latitude 0.1}])
 
+(fact "can convert to point array"
+      (points-vec points)       =>     [[1.0 0.5] [0.5 -0.5] [0.1 1.2]])
+
 (fact "Can translate points into string for leaflet"
       (stringify-points points)    =>   "[1.0, 0.5], [0.5, -0.5], [0.1, 1.2]")
 
 (fact "Can calculate bounding box for some points"
-      (box points)     =>     [[0.1 -0.5]
-                               [0.1 1.2]
-                               [1.0 -0.5]
-                               [1.0 1.2]])
+      (box points)     =>     [0.1 -0.5 1.0 1.2])
 
 (fact "Can calulate box size for some points"
       (box-size points)   =>     [0.9 1.7])
@@ -42,3 +43,9 @@
 
 
 (->> points box-size (apply rads) zoom-level round-vec (map dec)  (apply max))
+
+(osm/make-is-in-query (points-vec raw-points))
+
+(box raw-points)
+
+(osm/make-compl-arounds (points-vec raw-points))
